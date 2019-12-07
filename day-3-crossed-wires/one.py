@@ -8,20 +8,14 @@ def manhattan_distance(point):
 def parse_wire_positions(wire_path):
     x,y = 0,0
     wire_positions = set()
+    directions = {"R": (1,0), "L": (-1,0), "U": (0,1), "D": (0,-1)}
 
     for vector in wire_path:
         for _ in range(int(vector[1:])):
             direction = vector[0]
-
-            if direction == "R":
-                x += 1
-            elif direction == "L":
-                x -= 1
-            elif direction == "U":
-                y += 1
-            elif direction == "D":
-                y -= 1
-            
+            x += directions[direction][0]
+            y += directions[direction][1] 
+                       
             wire_positions.add((x,y))
             
     return wire_positions
